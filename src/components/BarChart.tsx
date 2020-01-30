@@ -17,7 +17,6 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
   let rerender: boolean = false;
   useEffect(()=>{
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    rerender = false;
     return ()=>{rerender = true};
   },[array]);
   const changeBarValue = async (i: number, value: number): Promise<void> => {
@@ -27,6 +26,9 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
       node.style.backgroundColor = "rgba(0, 140, 255, 0.712)";
       node.style.height = value.toString() + 'px';
       await new Promise((resolve, _) => {
+        if (rerender) {
+          resolve();
+        }
         setTimeout(()=>resolve(), 3000 / speed)
       })
       node.textContent = value.toString();
@@ -35,6 +37,7 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
   }
 
   const sortStart = async() => {
+    rerender = false;
     if (algoOption === algos[0]) {
       await bubbleSort(array, changeBarValue);
     } else if (algoOption === algos[1]) {
@@ -52,6 +55,9 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
           resolve()
         }, 100);
       });
+      if (rerender) {
+        return;
+      }
       modal.style.opacity = "1";
       container.className += " modalBlur";
       await new Promise((resolve, _) => {
