@@ -18,23 +18,37 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
     const node = refsArray[i];
     if (node) {
       node.style.backgroundColor = "rgba(0, 140, 255, 0.712)";
-      node.style.height = value.toString() + 'px';
       await new Promise((resolve, _) => {
+        node.style.height = value.toString() + 'px';
         setTimeout(()=>resolve(), 300 / speed)
       })
       node.textContent = value.toString();
       node.style.backgroundColor = "rgb(104, 104, 104)";
     }
   }
-  const sortStart = () => {
+  const sortStart = async() => {
     if (algoOption === algos[0]) {
-      bubbleSort(array, changeBarValue);
+      await bubbleSort(array, changeBarValue);
     } else if (algoOption === algos[1]) {
-      quickSort(array, changeBarValue);
+      await quickSort(array, changeBarValue);
     } else if (algoOption === algos[2]) {
-      mergeSort(array, changeBarValue);
+      await mergeSort(array, changeBarValue);
     } else {
-      heapSort(array, changeBarValue);
+      await heapSort(array, changeBarValue);
+    }
+    const container: HTMLDivElement|null = document.querySelector(".container");
+    const modal: HTMLDivElement|null = document.querySelector(".modal");
+    if (container && modal) {
+      await new Promise((resolve, _) => {
+        setTimeout(()=>resolve(), 3000 / speed);
+      });
+      container.className += " modalBlur";
+      modal.style.display = "block";
+      await new Promise((resolve, _) => {
+        setTimeout(()=>resolve(), 1200);
+      });
+      modal.style.display = "none";
+      container.className = "container";
     }
   }
   return (

@@ -137,6 +137,9 @@ const Content: React.FC<{}> = () => {
       <Setting setArraySize={setArraySize} setSpeed={setSpeed} setMax={setMax} regenerate={generate} 
         setOption={setAlgoOption}/>
       <BarChart array={array} speed={speed} setArray={setArray} algoOption={algoOption}/>
+      <div className="modal" aria-hidden="true" data-backdrop="true" data-keyboard="true">
+        Done!
+      </div>
     </div>
   )
 }

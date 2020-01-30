@@ -40,7 +40,7 @@ export const quickSort = async(array:number[], set:SetFun) => {
       await _qsort(array, pivot + 1, right, set);
     }
   }
-  _qsort(array, 0, array.length - 1, set);
+  await _qsort(array, 0, array.length - 1, set);
 } 
 
 export const mergeSort  = async(array:number[], set:SetFun) => {
@@ -77,7 +77,7 @@ export const mergeSort  = async(array:number[], set:SetFun) => {
       ++k; ++j;
     }
   }
-  _mergeSort(array, [...array], 0, array.length);
+  await _mergeSort(array, [...array], 0, array.length);
 } 
 
 export const heapSort = async(array:number[], set:SetFun) => {
@@ -110,6 +110,6 @@ export const heapSort = async(array:number[], set:SetFun) => {
       await heapify(arr, i, 0);
     }
   }
-  _heapSort(array);
+  await _heapSort(array);
 }
 
