@@ -131,7 +131,7 @@ const Content: React.FC<{}> = () => {
   }
   useEffect(() => {
     generate(arraySize, max);
-  }, [arraySize, max, speed])
+  }, [arraySize, max, speed, algoOption])
   return (
     <div className="container">
       <Setting setArraySize={setArraySize} setSpeed={setSpeed} setMax={setMax} regenerate={generate} 
