@@ -1,7 +1,4 @@
 type SetFun = (i:number, value: number) =>void;
-// type SetArray = React.Dispatch<React.SetStateAction<number[]>>;
-
- 
 
 export const bubbleSort = async(array:number[], set:SetFun) => {
   for (let i = 0; i < array.length - 1; ++i) {
@@ -39,8 +36,8 @@ export const quickSort = async(array:number[], set:SetFun) => {
   const _qsort = async(array:number[], left: number, right: number, set:SetFun) => {
     if (left < right) {
       const pivot:number = await partition(array, left, right);
-      _qsort(array, left, pivot - 1, set);
-      _qsort(array, pivot + 1, right, set);
+      await _qsort(array, left, pivot - 1, set);
+      await _qsort(array, pivot + 1, right, set);
     }
   }
   _qsort(array, 0, array.length - 1, set);
