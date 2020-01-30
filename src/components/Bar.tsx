@@ -16,7 +16,7 @@ const Bar = forwardRef<Ref, Props>((props, ref) => {
       <div ref={myRef}>
         <div ref={ref}
           style={{
-            height: value, width: width, transition: `height ${3 / speed}s ease`,
+            height: value, width: width, transition: `height ${2000 / speed}ms ease`,
             color: 'white', overflowWrap: "break-word",
             textAlign: "center"
           }}>

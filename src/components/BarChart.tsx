@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Bar from './Bar';
-import { algos } from './Content';
+import { algos } from './Settings';
 import { bubbleSort, quickSort, mergeSort, heapSort } from './Algorithms'
 
 interface Props {
@@ -14,18 +14,26 @@ interface Props {
 const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
   const width: number = (1000 / array.length);
   const refsArray: (HTMLDivElement | null)[] = [];
+  let rerender: boolean = false;
+  useEffect(()=>{
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    rerender = false;
+    return ()=>{rerender = true};
+  },[array]);
   const changeBarValue = async (i: number, value: number): Promise<void> => {
     const node = refsArray[i];
     if (node) {
+      const old_bgColor:string = node.style.backgroundColor;
       node.style.backgroundColor = "rgba(0, 140, 255, 0.712)";
+      node.style.height = value.toString() + 'px';
       await new Promise((resolve, _) => {
-        node.style.height = value.toString() + 'px';
-        setTimeout(()=>resolve(), 300 / speed)
+        setTimeout(()=>resolve(), 3000 / speed)
       })
       node.textContent = value.toString();
-      node.style.backgroundColor = "rgb(104, 104, 104)";
+      node.style.backgroundColor = old_bgColor;
     }
   }
+
   const sortStart = async() => {
     if (algoOption === algos[0]) {
       await bubbleSort(array, changeBarValue);
@@ -38,17 +46,19 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
     }
     const container: HTMLDivElement|null = document.querySelector(".container");
     const modal: HTMLDivElement|null = document.querySelector(".modal");
-    if (container && modal) {
+    if (container && modal && !rerender) {
       await new Promise((resolve, _) => {
-        setTimeout(()=>resolve(), 3000 / speed);
+        setTimeout(()=>{
+          resolve()
+        }, 100);
       });
+      modal.style.opacity = "1";
       container.className += " modalBlur";
-      modal.style.display = "block";
       await new Promise((resolve, _) => {
         document.body.onclick = resolve;
         setTimeout(()=>resolve(), 2000);
       });
-      modal.style.display = "none";
+      modal.style.opacity = "0";
       container.className = "container";
     }
   }
