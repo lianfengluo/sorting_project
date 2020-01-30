@@ -1,5 +1,5 @@
 {
-  "name": "sorting-project",
+  "name": "sorting_project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,7 @@
     "react-select": "^3.0.8",
     "typescript": "~3.7.2"
   },
+  "homepage": "https://lianfengluo.github.io/sorting_project/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
