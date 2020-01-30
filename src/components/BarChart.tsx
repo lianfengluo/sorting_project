@@ -45,7 +45,8 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
       container.className += " modalBlur";
       modal.style.display = "block";
       await new Promise((resolve, _) => {
-        setTimeout(()=>resolve(), 1200);
+        document.body.onclick = resolve;
+        setTimeout(()=>resolve(), 2000);
       });
       modal.style.display = "none";
       container.className = "container";
