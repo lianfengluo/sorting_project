@@ -8,16 +8,16 @@ export const default_max: number = 250;
 export const algos: string[] = ['bubble sort', 'quick sort', 'merge sort', 'heap sort']
 type Option = { value: string, label: string }
 const algoOptions = algos.reduce((algo: Option[], item: string) => {
-                     return [...algo, { value: item, label: item }] 
-                    },[])
+  return [...algo, { value: item, label: item }]
+}, [])
 
-const groupStyles:React.CSSProperties = {
+const groupStyles: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
 };
 
-const groupBadgeStyles:React.CSSProperties = {
+const groupBadgeStyles: React.CSSProperties = {
   backgroundColor: '#EBECF0',
   borderRadius: '2em',
   color: '#172B4D',
@@ -29,7 +29,7 @@ const groupBadgeStyles:React.CSSProperties = {
   textAlign: 'center',
 }
 
-const formatGroupLabel:React.FC<any> = (data) => (
+const formatGroupLabel: React.FC<any> = (data) => (
   <div style={groupStyles}>
     <span>{data.label}</span>
     <span style={groupBadgeStyles}>{data.options.length}</span>
@@ -61,7 +61,8 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
       </div>
       <div className="input-size">
         <input type="text" name="arraySize" value={arraySize}
-          onChange={e => setInnerArraySize(!isNaN(+e.target.value) ? +e.target.value : default_size)}
+          onChange={e =>
+            setInnerArraySize(!isNaN(+e.target.value) ? +e.target.value : default_size)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               const value = (+e.currentTarget.value < 10 ? 10 :
@@ -91,19 +92,19 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
         </label>
       </div>
       <div className="select-class">
-      <Select
-        className='select-class'
-        placeholder="Algorithms:"
-        value={selectedOption}
-        onChange={(e:ValueType<Option>)=>{
-          setSelectedOption(e);
-          if (e) {
-            setOption((e as Option).value);
-          }
-        }}
-        options={algoOptions}
-        formatGroupLabel={formatGroupLabel}
-      />
+        <Select
+          className='select-class'
+          placeholder="Algorithms:"
+          value={selectedOption}
+          onChange={(e: ValueType<Option>) => {
+            setSelectedOption(e);
+            if (e) {
+              setOption((e as Option).value);
+            }
+          }}
+          options={algoOptions}
+          formatGroupLabel={formatGroupLabel}
+        />
       </div>
       <div>
         <button onClick={() => regenerate(arraySize, max)}>
