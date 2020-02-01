@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Select from 'react-select';
+import Select, { ValueType } from 'react-select';
 
 export const default_size: number = 50;
 export const default_speed: number = 500;
@@ -11,7 +11,7 @@ const algoOptions = algos.reduce((algo: Option[], item: string) => {
                      return [...algo, { value: item, label: item }] 
                     },[])
 
-const groupStyles = {
+const groupStyles:React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -48,7 +48,7 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
   const [speed, setInnerSpeed] = useState<number>(default_speed);
   const [arraySize, setInnerArraySize] = useState<number>(default_size);
   const [max, setInnerMax] = useState<number>(default_max);
-  const [selectedOption, setSelectedOption] = useState<any>(algoOptions[0]);
+  const [selectedOption, setSelectedOption] = useState<ValueType<Option>>(algoOptions[0]);
   return (
     <div className="setting-container">
       <div className="sorting-speed">
@@ -95,10 +95,10 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
         className='select-class'
         placeholder="Algorithms:"
         value={selectedOption}
-        onChange={(e)=>{
+        onChange={(e:ValueType<Option>)=>{
           setSelectedOption(e);
           if (e) {
-            setOption(e.value)
+            setOption((e as Option).value);
           }
         }}
         options={algoOptions}

@@ -23,10 +23,11 @@ const Content: React.FC<{}> = () => {
   }, [arraySize, max, speed, algoOption])
   return (
     <div className="container">
-      <Settings setArraySize={setArraySize} setSpeed={setSpeed} setMax={setMax} regenerate={generate} 
-        setOption={setAlgoOption}/>
+      <Settings setArraySize={setArraySize} setSpeed={setSpeed} setMax={setMax} 
+        regenerate={generate} setOption={setAlgoOption}/>
       <BarChart array={array} speed={speed} setArray={setArray} algoOption={algoOption}/>
-      <div className="modal" aria-hidden="true" data-backdrop="true" data-keyboard="true">
+      <div className="modal" aria-hidden="true" data-backdrop="true" 
+        data-keyboard="true">
         Done!!!
       </div>
     </div>
