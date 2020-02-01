@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Select, { ValueType } from 'react-select';
+import Select, { ValueType, GroupType } from 'react-select';
 
 export const default_size: number = 50;
 export const default_speed: number = 500;
@@ -29,7 +29,7 @@ const groupBadgeStyles: React.CSSProperties = {
   textAlign: 'center',
 }
 
-const formatGroupLabel: React.FC<any> = (data) => (
+const formatGroupLabel: React.FC<GroupType<Option>> = (data) => (
   <div style={groupStyles}>
     <span>{data.label}</span>
     <span style={groupBadgeStyles}>{data.options.length}</span>
