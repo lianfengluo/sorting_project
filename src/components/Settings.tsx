@@ -49,6 +49,16 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
   const [arraySize, setInnerArraySize] = useState<number>(default_size);
   const [max, setInnerMax] = useState<number>(default_max);
   const [selectedOption, setSelectedOption] = useState<ValueType<Option>>(algoOptions[0]);
+  const submitArraySize = (value:number): void => {
+    const val = (+value < 10 ? 10 : (+value > 100) ? 100 : +value);
+    setInnerArraySize(val);
+    setArraySize(val);
+  }
+  const submitMaxVal = (value:number): void => {
+    const val = (value < 20 ? 20 : (value > 500) ? 500 : value);
+    setInnerMax(val);
+    setMax(val);
+  }
   return (
     <div className="setting-container">
       <div className="sorting-speed">
@@ -63,15 +73,7 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
         <input type="text" name="arraySize" value={arraySize}
           onChange={e =>
             setInnerArraySize(!isNaN(+e.target.value) ? +e.target.value : default_size)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              const value = (+e.currentTarget.value < 10 ? 10 :
-                (+e.currentTarget.value > 100) ? 100 : +e.currentTarget.value);
-              setInnerArraySize(value);
-              setArraySize(value);
-            }
-          }
-          } required />
+          onKeyDown={(e) => e.key === 'Enter' && submitArraySize(+e.currentTarget.value)} required />
         <label htmlFor="arraySize">
           Size:
         </label>
@@ -79,14 +81,8 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
       <div className="max-number">
         <input type="text" value={max}
           onChange={e => setInnerMax(!isNaN(+e.target.value) ? +e.target.value : default_max)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              const value = (+e.currentTarget.value < 20 ? 20 :
-                (+e.currentTarget.value > 500) ? 500 : +e.currentTarget.value);
-              setInnerMax(value);
-              setMax(value);
-            }
-          }} name="maxNumber" required />
+          onKeyDown={(e) => e.key === 'Enter' && submitMaxVal(+e.currentTarget.value)} 
+          name="maxNumber" required />
         <label htmlFor="maxNumber">
           Max value:
         </label>
@@ -98,16 +94,18 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
           value={selectedOption}
           onChange={(e: ValueType<Option>) => {
             setSelectedOption(e);
-            if (e) {
-              setOption((e as Option).value);
-            }
+            e && setOption((e as Option).value);
           }}
           options={algoOptions}
           formatGroupLabel={formatGroupLabel}
         />
       </div>
       <div>
-        <button onClick={() => regenerate(arraySize, max)}>
+        <button onClick={() => {
+          submitArraySize(arraySize);
+          submitMaxVal(max);
+          regenerate(arraySize, max)
+        }}>
           Regenerate!!
         </button>
       </div>
