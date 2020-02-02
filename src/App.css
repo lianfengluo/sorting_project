@@ -49,7 +49,13 @@ h3 {
 .header {
   width: 100%;
   display: flex;
-  background-color: rgba(22, 160, 224, 0.698);
+  /* background-color: rgba(22, 160, 224, 0.698); */
+  background: linear-gradient(
+    to right,
+    rgba(16, 179, 255, 0.404),
+    rgba(22, 160, 224, 0.698),
+    rgba(16, 179, 255, 0.404)
+  );
   color: rgba(0, 0, 0, 0.883);
   justify-content: space-between;
   align-items: center;
@@ -58,7 +64,7 @@ h3 {
 
 .header-title {
   margin: 0 0 0 20px;
-  font-family: Monospace, Pacifico, 'Abril Fatface';
+  font-family: Monospace, Pacifico, "Abril Fatface";
   text-align: left;
   height: 100%;
   font-size: 2.5rem;
@@ -71,7 +77,7 @@ h3 {
 .header-content {
   box-sizing: border-box;
   display: flex;
-  flex:1;
+  flex: 1;
   align-items: center;
   justify-content: space-between;
   height: 100%;
@@ -112,45 +118,45 @@ h3 {
 .sorting-speed label[for="speed"] {
   margin-right: 10px;
   font-weight: 800;
-  font-size: 1.5rem ;
+  font-size: 1.5rem;
   width: 50px;
   box-sizing: border-box;
 }
 
 .select-class {
-  width:200px;
+  width: 200px;
   font-size: 1.8rem;
 }
 
-.sorting-speed input[type=range] {
+.sorting-speed input[type="range"] {
   width: 200px;
   box-sizing: border-box;
   height: 25px;
   -webkit-appearance: none;
   margin: 10px 0;
 }
-.sorting-speed input[type=range]:focus {
+.sorting-speed input[type="range"]:focus {
   outline: none;
 }
-.sorting-speed input[type=range]::-webkit-slider-runnable-track {
+.sorting-speed input[type="range"]::-webkit-slider-runnable-track {
   height: 5px;
   cursor: pointer;
   background: rgb(119, 184, 228);
   border-radius: 1px;
 }
 
-.sorting-speed input[type=range]::-webkit-slider-thumb {
+.sorting-speed input[type="range"]::-webkit-slider-thumb {
   border: 1px solid rgb(119, 184, 228);
   height: 25px;
   width: 25px;
   border-radius: 25px;
-  background: #A1D0FF;
+  background: #a1d0ff;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -7px;
 }
 
-.sorting-speed input[type=range]:focus::-webkit-slider-runnable-track {
+.sorting-speed input[type="range"]:focus::-webkit-slider-runnable-track {
   background: rgb(119, 184, 228);
 }
 
@@ -160,67 +166,67 @@ h3 {
   align-items: center;
 }
 
-
-.sorting-speed input[type=range]::-moz-range-track {
+.sorting-speed input[type="range"]::-moz-range-track {
   height: 5px;
   cursor: pointer;
   background: rgb(119, 184, 228);
   border-radius: 1px;
 }
-.sorting-speed input[type=range]::-moz-range-thumb {
+.sorting-speed input[type="range"]::-moz-range-thumb {
   border: 1px solid rgb(119, 184, 228);
   height: 25px;
   width: 25px;
   border-radius: 25px;
-  background: #A1D0FF;
+  background: #a1d0ff;
   cursor: pointer;
 }
-.sorting-speed input[type=range]::-ms-track {
+.sorting-speed input[type="range"]::-ms-track {
   height: 5px;
   cursor: pointer;
   background: transparent;
   border-color: transparent;
   color: transparent;
 }
-.sorting-speed input[type='range']::-moz-focus-outer { border: 0; }
+.sorting-speed input[type="range"]::-moz-focus-outer {
+  border: 0;
+}
 
-.sorting-speed input[type=range]::-ms-fill-lower {
+.sorting-speed input[type="range"]::-ms-fill-lower {
   background: rgb(119, 184, 228);
   border-radius: 2px;
-  
 }
-.sorting-speed input[type=range]::-ms-fill-upper {
+.sorting-speed input[type="range"]::-ms-fill-upper {
   background: rgb(119, 184, 228);
   border-radius: 2px;
-  
 }
-.sorting-speed input[type=range]::-ms-thumb {
+.sorting-speed input[type="range"]::-ms-thumb {
   margin-top: 1px;
   border: 1px solid rgb(119, 184, 228);
   height: 25px;
   width: 25px;
   border-radius: 25px;
-  background: #A1D0FF;
+  background: #a1d0ff;
   cursor: pointer;
 }
-.sorting-speed input[type=range]:focus::-ms-fill-lower {
+.sorting-speed input[type="range"]:focus::-ms-fill-lower {
   background: rgb(119, 184, 228);
 }
-.sorting-speed input[type=range]:focus::-ms-fill-upper {
+.sorting-speed input[type="range"]:focus::-ms-fill-upper {
   background: rgb(119, 184, 228);
 }
 
-.input-size, .max-number {
+.input-size,
+.max-number {
   position: relative;
 }
 
 .input-size input:focus,
-.max-number input:focus{
+.max-number input:focus {
   outline: 0;
 }
 
-.input-size input[type=text],
-.max-number input[type=text] {
+.input-size input[type="text"],
+.max-number input[type="text"] {
   font-size: 1.6rem;
   width: 100%;
   border: none;
@@ -230,7 +236,7 @@ h3 {
 .input-size input::-webkit-inner-spin-button,
 .input-size input::-webkit-outer-spin-button,
 .max-number input::-webkit-inner-spin-button,
-.max-number input::-webkit-outer-spin-button{
+.max-number input::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
@@ -239,8 +245,8 @@ h3 {
   -moz-appearance: textfield;
 }
 
-
-.input-size label, .max-number label {
+.input-size label,
+.max-number label {
   position: absolute;
   bottom: 0;
   text-align: left;
@@ -249,23 +255,21 @@ h3 {
   width: 100%;
   height: 100%;
   border-bottom: 1px solid rgb(119, 184, 228);
-  -webkit-box-shadow:0px 6px 0px 0px rgba(113, 184, 231, 0.39);
-  -moz-box-shadow:0px 6px 0px 0px rgba(119, 184, 231, 0.39);
-  box-shadow:0px 6px 0px 0px rgba(119, 184, 231, 0.39);
+  -webkit-box-shadow: 0px 6px 0px 0px rgba(113, 184, 231, 0.39);
+  -moz-box-shadow: 0px 6px 0px 0px rgba(119, 184, 231, 0.39);
+  box-shadow: 0px 6px 0px 0px rgba(119, 184, 231, 0.39);
 }
 
-.input-size input[type=text]::-webkit-inner-spin-button,
-.input-size input[type=text]::-webkit-outer-spin-button,
-.max-number input[type=text]::-webkit-inner-spin-button,
-.max-number input[type=text]::-webkit-outer-spin-button
-{
+.input-size input[type="text"]::-webkit-inner-spin-button,
+.input-size input[type="text"]::-webkit-outer-spin-button,
+.max-number input[type="text"]::-webkit-inner-spin-button,
+.max-number input[type="text"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-
 .setting-container label {
-  margin-right:10px;
+  margin-right: 10px;
   box-sizing: border-box;
   font-size: 1.3rem;
   font-weight: 800;
@@ -292,7 +296,7 @@ h3 {
   justify-content: space-around;
 }
 
-.sorting-button button{
+.sorting-button button {
   font-weight: 800;
   font-size: 1.6rem;
   border: 0;
@@ -302,11 +306,10 @@ h3 {
   color: white;
   background-color: rgb(119, 184, 228);
 }
-.sorting-button button:hover{
+.sorting-button button:hover {
   cursor: pointer;
   background-color: rgba(135, 191, 228, 0.945);
 }
-
 
 .bar-chart {
   height: 70vh;
@@ -328,7 +331,9 @@ h3 {
   box-sizing: border-box;
   line-height: 100%;
 }
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 
 .modal {
   position: fixed;
@@ -347,7 +352,6 @@ button:focus {outline:0;}
   -webkit-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out;
 }
-
 
 .modalBlur :not(.modal) {
   -webkit-filter: blur(8px);
