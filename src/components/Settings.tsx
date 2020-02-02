@@ -49,6 +49,8 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
   const [arraySize, setInnerArraySize] = useState<number>(default_size);
   const [max, setInnerMax] = useState<number>(default_max);
   const [selectedOption, setSelectedOption] = useState<ValueType<Option>>(algoOptions[0]);
+  // const inputSizeRef: RefObject<HTMLInputElement> = createRef();
+  // const inputMaxRef: RefObject<HTMLInputElement> = createRef();
   const submitArraySize = (value:number): void => {
     const val = (+value < 10 ? 10 : (+value > 100) ? 100 : +value);
     setInnerArraySize(val);
@@ -70,12 +72,12 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
           }} />
       </div>
       <div className="input-size">
-        <input type="text" name="arraySize" value={arraySize}
+        <input type="text" name="arraySize" value={arraySize} 
           onChange={e =>
             setInnerArraySize(!isNaN(+e.target.value) ? +e.target.value : default_size)}
           onKeyDown={(e) => e.key === 'Enter' && submitArraySize(+e.currentTarget.value)} required />
         <label htmlFor="arraySize">
-          Size:
+          Size (10 or above):
         </label>
       </div>
       <div className="max-number">
@@ -84,7 +86,7 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
           onKeyDown={(e) => e.key === 'Enter' && submitMaxVal(+e.currentTarget.value)} 
           name="maxNumber" required />
         <label htmlFor="maxNumber">
-          Max value:
+          Max value (20 or above):
         </label>
       </div>
       <div className="select-class">

@@ -26,9 +26,7 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
       node.style.backgroundColor = "rgba(0, 140, 255, 0.712)";
       node.style.height = value.toString() + 'px';
       await new Promise((resolve, _) => {
-        if (rerender) {
-          resolve();
-        }
+        rerender && resolve();
         setTimeout(()=>resolve(), 3000 / speed)
       })
       node.textContent = value.toString();
@@ -69,18 +67,17 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
     }
   }
   return (
-    <>
+    <div className="chart-content">
       <div className="bar-chart">
         {array.map((v, k) =>
-          <Bar speed={speed} key={k} value={v} width={width} ref={ref => {
-            refsArray[k] = ref;
-          }} />
+          <Bar speed={speed} key={k} value={v} width={width} 
+                      ref={ref => refsArray[k] = ref} />
         )}
       </div>
       <div className="sorting-button" onClick={() => sortStart()}>
         <button>Start Sorting</button>
       </div>
-    </>
+    </div>
   )
 }
 
