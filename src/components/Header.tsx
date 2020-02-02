@@ -12,9 +12,7 @@ const Header: React.FC<Props> = ({title, text}) => {
        <h2 className="header-title">
          {title}
        </h2>
-      {text ? text.map((v, k) => {
-        return <h3 key={k}>{v}</h3>
-      }) : <></>}
+      {text && text.map((v, k) => <h3 key={k}>{v}</h3>) }
      </header>
    </div>
  )

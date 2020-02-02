@@ -1,4 +1,4 @@
-import React, { forwardRef, createRef } from 'react';
+import React, { forwardRef } from 'react';
 
 
 interface Props {
@@ -10,20 +10,15 @@ type Ref = HTMLDivElement;
 
 const Bar = forwardRef<Ref, Props>((props, ref) => {
   const { value, width, speed } = props;
-  const myRef = createRef<HTMLDivElement>();
   return (
-    <>
-      <div ref={myRef}>
-        <div ref={ref}
-          style={{
-            height: value, width: width, transition: `height ${2000 / speed}ms ease`,
-            color: 'white', overflowWrap: "break-word",
-            textAlign: "center"
-          }}>
-          {props.value}
-        </div>
+      <div ref={ref}
+        style={{
+          height: value, width: width, transition: `height ${2000 / speed}ms ease`,
+          color: 'white', overflowWrap: "break-word",
+          textAlign: "center"
+        }}>
+        {props.value}
       </div>
-    </>
   )
 })
 
