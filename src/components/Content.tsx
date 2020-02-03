@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import BarChart from './BarChart';
-import { Settings, default_size, default_max, default_speed, algos } from './Settings';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { default_size, default_max, default_speed, algos } from './Settings';
 
 
+const BarChart = lazy(() => import('./BarChart'));
+const Settings = lazy(() => import('./Settings'));
 
 const Content: React.FC<{}> = () => {
   const [arraySize, setArraySize] = useState<number>(default_size);
@@ -22,6 +23,7 @@ const Content: React.FC<{}> = () => {
     generate(arraySize, max);
   }, [arraySize, max, speed, algoOption])
   return (
+    <Suspense fallback={()=><h3>Loading...</h3>}>
     <div className="container">
       <Settings setArraySize={setArraySize} setSpeed={setSpeed} setMax={setMax} 
         regenerate={generate} setOption={setAlgoOption}/>
@@ -31,6 +33,7 @@ const Content: React.FC<{}> = () => {
         Done!!!
       </div>
     </div>
+    </Suspense>
   )
 }
 

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import Select, { ValueType, GroupType } from 'react-select';
+import React, { useState, lazy } from 'react';
+import { ValueType, GroupType } from 'react-select';
 
 export const default_size: number = 50;
 export const default_speed: number = 500;
 export const default_max: number = 250;
+
+const Select = lazy(()=> import('react-select'));
 
 export const algos: string[] = ['bubble sort', 'quick sort', 'merge sort', 'heap sort']
 type Option = { value: string, label: string }
@@ -44,7 +46,7 @@ interface SettingInfo {
   regenerate: (arraySize: number, max: number) => void;
 }
 
-export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax, setOption, regenerate }) => {
+const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax, setOption, regenerate }) => {
   const [speed, setInnerSpeed] = useState<number>(default_speed);
   const [arraySize, setInnerArraySize] = useState<number>(default_size);
   const [max, setInnerMax] = useState<number>(default_max);
@@ -114,3 +116,5 @@ export const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax
     </div>
   )
 }
+
+export default Settings;

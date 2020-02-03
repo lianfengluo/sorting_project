@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import Bar from './Bar';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { algos } from './Settings';
 import { bubbleSort, quickSort, mergeSort, heapSort } from './Algorithms'
 
@@ -10,6 +9,7 @@ interface Props {
   setArray?: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
+const Bar = lazy(() => import('./Bar'));
 
 const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
   const width: number = (1000 / array.length);
@@ -67,6 +67,7 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
     }
   }
   return (
+    <Suspense fallback={()=><h3>Loading...</h3>}>
     <div className="chart-content">
       <div className="bar-chart">
         {array.map((v, k) =>
@@ -78,6 +79,7 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
         <button>Start Sorting</button>
       </div>
     </div>
+    </Suspense>
   )
 }
 
