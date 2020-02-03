@@ -1,7 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { default_size, default_max, default_speed, algos } from './Settings';
 
-
 const BarChart = lazy(() => import('./BarChart'));
 const Settings = lazy(() => import('./Settings'));
 

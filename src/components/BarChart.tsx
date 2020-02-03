@@ -22,15 +22,15 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
   const changeBarValue = async (i: number, value: number): Promise<void> => {
     const node = refsArray[i];
     if (node) {
-      const old_bgColor:string = node.style.backgroundColor;
-      node.style.backgroundColor = "rgba(0, 140, 255, 0.712)";
+      const old_bg:string = node.style.background;
+      node.style.background = "linear-gradient(to bottom, rgba(0, 140, 255, 0.829), 70%, rgba(0, 140, 255, 0.3))";
       node.style.height = value.toString() + 'px';
       await new Promise((resolve, _) => {
         rerender && resolve();
         setTimeout(()=>resolve(), 3000 / speed)
       })
       node.textContent = value.toString();
-      node.style.backgroundColor = old_bgColor;
+      node.style.background = old_bg;
     }
   }
 
