@@ -282,11 +282,19 @@ h3 {
   height: 100%;
   border-radius: 5px;
   color: white;
-  background-color: rgb(119, 184, 228);
+  background: linear-gradient(
+    to right,
+    rgba(22, 160, 224, 0.75), 80%,
+    rgba(16, 179, 255, 0.5)
+  );
 }
 .setting-container button:hover {
   cursor: pointer;
-  background-color: rgba(135, 191, 228, 0.945);
+  background: linear-gradient(
+    to right,
+    rgba(16, 179, 255, 0.5), 80%,
+    rgba(22, 160, 224, 0.25)
+  );
 }
 .sorting-button {
   display: flex;
@@ -303,11 +311,19 @@ h3 {
   height: 45px;
   border-radius: 5px;
   color: white;
-  background-color: rgb(119, 184, 228);
+  background: linear-gradient(
+    to right,
+    rgba(22, 160, 224, 0.75), 80%,
+    rgba(16, 179, 255, 0.5)
+  );
 }
 .sorting-button button:hover {
   cursor: pointer;
-  background-color: rgba(135, 191, 228, 0.945);
+  background: linear-gradient(
+    to right,
+    rgba(16, 179, 255, 0.5), 80%,
+    rgba(22, 160, 224, 0.25)
+  );
 }
 
 .bar-chart {
