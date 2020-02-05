@@ -372,7 +372,27 @@ button:focus {
   -webkit-filter: blur(8px);
   filter: blur(8px);
 }
+
 .modal-backdrop {
   opacity: 0.65;
   filter: alpha(opacity=65);
 }
+
+.group-styles {
+  display: 'flex';
+  align-items: 'center';
+  justify-content: 'space-between';
+}
+
+.group-badge-styles {
+  background-color: #EBECF0;
+  border-radius: 2rem;
+  color: #172B4D;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1;
+  min-width: 1;
+  padding: 0.16666666666667em 0.5em;
+  text-align: center;
+}
+

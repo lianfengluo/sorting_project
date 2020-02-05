@@ -1,10 +1,6 @@
 import React, { useState, lazy } from 'react';
 import { ValueType, GroupType } from 'react-select';
 
-export const default_size: number = 50;
-export const default_speed: number = 500;
-export const default_max: number = 250;
-
 const Select = lazy(()=> import('react-select'));
 
 export const algos: string[] = ['bubble sort', 'quick sort', 'merge sort', 'heap sort']
@@ -13,28 +9,10 @@ const algoOptions = algos.reduce((algo: Option[], item: string) => {
   return [...algo, { value: item, label: item }]
 }, [])
 
-const groupStyles: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-};
-
-const groupBadgeStyles: React.CSSProperties = {
-  backgroundColor: '#EBECF0',
-  borderRadius: '2em',
-  color: '#172B4D',
-  display: 'inline-block',
-  fontWeight: 'normal',
-  lineHeight: '1',
-  minWidth: 1,
-  padding: '0.16666666666667em 0.5em',
-  textAlign: 'center',
-}
-
 const formatGroupLabel: React.FC<GroupType<Option>> = (data) => (
-  <div style={groupStyles}>
+  <div className="group-styles">
     <span>{data.label}</span>
-    <span style={groupBadgeStyles}>{data.options.length}</span>
+    <span className='group-badge-styles'>{data.options.length}</span>
   </div>
 );
 
@@ -44,15 +22,19 @@ interface SettingInfo {
   setMax: (max: number) => void;
   setOption: (option: string) => void;
   regenerate: (arraySize: number, max: number) => void;
+  default_speed: number;
+  default_size: number;
+  default_max: number;
 }
 
-const Settings: React.FC<SettingInfo> = ({ setArraySize, setSpeed, setMax, setOption, regenerate }) => {
+const Settings: React.FC<SettingInfo> = ({ 
+  setArraySize, setSpeed, setMax, setOption, regenerate,
+  default_speed, default_size, default_max
+ }) => {
   const [speed, setInnerSpeed] = useState<number>(default_speed);
   const [arraySize, setInnerArraySize] = useState<number>(default_size);
   const [max, setInnerMax] = useState<number>(default_max);
   const [selectedOption, setSelectedOption] = useState<ValueType<Option>>(algoOptions[0]);
-  // const inputSizeRef: RefObject<HTMLInputElement> = createRef();
-  // const inputMaxRef: RefObject<HTMLInputElement> = createRef();
   const submitArraySize = (value:number): void => {
     const val = (+value < 10 ? 10 : (+value > 100) ? 100 : +value);
     setInnerArraySize(val);

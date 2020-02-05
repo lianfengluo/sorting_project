@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { algos } from './Settings';
-import { bubbleSort, quickSort, mergeSort, heapSort } from './Algorithms'
+import { bubbleSort, quickSort, mergeSort, heapSort } from '../utils/Algorithms'
 
 interface Props {
   array: number[];
