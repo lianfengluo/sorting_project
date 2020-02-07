@@ -1,7 +1,8 @@
-import React, { useState, lazy } from 'react';
+import React, { useState, lazy, useCallback, memo } from 'react';
 import { ValueType, GroupType } from 'react-select';
 
-const Select = lazy(()=> import('react-select'));
+const Select = memo(lazy(()=> import('react-select')));
+
 
 export const algos: string[] = ['bubble sort', 'quick sort', 'merge sort', 'heap sort']
 type Option = { value: string, label: string }
@@ -35,16 +36,16 @@ const Settings: React.FC<SettingInfo> = ({
   const [arraySize, setInnerArraySize] = useState<number>(default_size);
   const [max, setInnerMax] = useState<number>(default_max);
   const [selectedOption, setSelectedOption] = useState<ValueType<Option>>(algoOptions[0]);
-  const submitArraySize = (value:number): void => {
+  const submitArraySize = useCallback((value:number): void => {
     const val = (+value < 10 ? 10 : (+value > 100) ? 100 : +value);
     setInnerArraySize(val);
     setArraySize(val);
-  }
-  const submitMaxVal = (value:number): void => {
+  }, [setArraySize]);
+  const submitMaxVal = useCallback((value:number): void => {
     const val = (value < 20 ? 20 : (value > 500) ? 500 : value);
     setInnerMax(val);
     setMax(val);
-  }
+  }, [setMax]);
   return (
     <div className="setting-container">
       <div className="sorting-speed">

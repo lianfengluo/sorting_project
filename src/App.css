@@ -366,6 +366,7 @@ button:focus {
   -o-transition: opacity 1s ease-in-out;
   -webkit-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out;
+  cursor: pointer;
 }
 
 .modalBlur :not(.modal) {

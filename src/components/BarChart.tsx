@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense, useRef } from 'react';
 import { algos } from './Settings';
 import { bubbleSort, quickSort, mergeSort, heapSort } from '../utils/Algorithms'
 
@@ -14,10 +14,9 @@ const Bar = lazy(() => import('./Bar'));
 const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
   const width: number = (1000 / array.length);
   const refsArray: (HTMLDivElement | null)[] = [];
-  let rerender: boolean = false;
+  const rerender: React.MutableRefObject<boolean> = useRef<boolean>(false);
   useEffect(()=>{
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    return ()=>{rerender = true};
+    return ()=>{rerender.current = true};
   },[array]);
   const changeBarValue = async (i: number, value: number): Promise<void> => {
     const node = refsArray[i];
@@ -26,7 +25,7 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
       node.style.background = "linear-gradient(to bottom, rgba(0, 140, 255, 0.829), 70%, rgba(0, 140, 255, 0.3))";
       node.style.height = value.toString() + 'px';
       await new Promise((resolve, _) => {
-        rerender && resolve();
+        rerender.current && resolve();
         setTimeout(()=>resolve(), 3000 / speed)
       })
       node.textContent = value.toString();
@@ -35,7 +34,7 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
   }
 
   const sortStart = async() => {
-    rerender = false;
+    rerender.current = false;
     if (algoOption === algos[0]) {
       await bubbleSort(array, changeBarValue);
     } else if (algoOption === algos[1]) {
@@ -47,13 +46,13 @@ const BarChart: React.FC<Props> = ({ array, speed, setArray, algoOption }) => {
     }
     const container: HTMLDivElement|null = document.querySelector(".container");
     const modal: HTMLDivElement|null = document.querySelector(".modal");
-    if (container && modal && !rerender) {
+    if (container && modal && !rerender.current) {
       await new Promise((resolve, _) => {
         setTimeout(()=>{
           resolve()
         }, 100);
       });
-      if (rerender) {
+      if (rerender.current) {
         return;
       }
       modal.style.opacity = "1";
