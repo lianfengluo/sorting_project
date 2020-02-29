@@ -1,12 +1,14 @@
 type SetFun = (i:number, value: number) =>void;
 
-export const bubbleSort = async(array:number[], set:SetFun) => {
+export const bubbleSort = async(array:number[], set? :SetFun) => {
   for (let i = 0; i < array.length - 1; ++i) {
     for (let j = i + 1; j < array.length; ++j) {
       if (array[i] > array[j]) {
         const temp = array[i];
-        await set(i, array[j]);
-        await set(j, temp);
+        if (set) {
+          await set(i, array[j]);
+          await set(j, temp);
+        }
         array[i] = array[j];
         array[j] = temp;
       }
@@ -14,7 +16,7 @@ export const bubbleSort = async(array:number[], set:SetFun) => {
   }
 } 
 
-export const quickSort = async(array:number[], set:SetFun) => {
+export const quickSort = async(array:number[], set? :SetFun) => {
   const partition = async(array:number[], left: number, right: number):Promise<number> => {
     let pivot = array[right];
     let i = left - 1;
@@ -22,28 +24,32 @@ export const quickSort = async(array:number[], set:SetFun) => {
       if (array[j] < pivot) {
         ++i;
         const temp:number = array[i];
-        await set(i, array[j]);
-        await set(j, temp);
+        if (set) {
+          await set(i, array[j]);
+          await set(j, temp);
+        }
         array[i] = array[j];
         array[j] = temp;
       }
     }
-    await set(right, array[i + 1]);
-    await set(i + 1, array[right]);
+    if (set) {
+      await set(right, array[i + 1]);
+      await set(i + 1, array[right]);
+    }
     [array[i + 1], array[right]] = [array[right], array[i + 1]]
     return i + 1;
   }
-  const _qsort = async(array:number[], left: number, right: number, set:SetFun) => {
+  const _qsort = async(array:number[], left: number, right: number) => {
     if (left < right) {
       const pivot:number = await partition(array, left, right);
-      await _qsort(array, left, pivot - 1, set);
-      await _qsort(array, pivot + 1, right, set);
+      await _qsort(array, left, pivot - 1);
+      await _qsort(array, pivot + 1, right);
     }
   }
-  await _qsort(array, 0, array.length - 1, set);
+  await _qsort(array, 0, array.length - 1);
 } 
 
-export const mergeSort  = async(array:number[], set:SetFun) => {
+export const mergeSort  = async(array:number[], set? :SetFun) => {
   const _mergeSort = async(arr1:number[], arr2:number[], left: number, right: number): Promise<void> => {
     if (left + 1 >= right) {
       return
@@ -56,23 +62,23 @@ export const mergeSort  = async(array:number[], set:SetFun) => {
     let k: number = left;
     while (i < mid && j < right) {
       if (arr2[i] < arr2[j]) {
-          await set(k, arr2[i]);
+          set && await set(k, arr2[i]);
         arr1[k] = arr2[i];
         ++i;
       } else {
-          await set(k, arr2[j]);
+         set && await set(k, arr2[j]);
         arr1[k] = arr2[j];
         ++j;
       }
       ++k;
     }
     while (i < mid) {
-        await set(k, arr2[i]);
+        set && await set(k, arr2[i]);
       arr1[k] = arr2[i];
       ++k; ++i;
     }
     while (j < right) {
-        await set(k, arr2[j]);
+        set && await set(k, arr2[j]);
       arr1[k] = arr2[j];
       ++k; ++j;
     }
@@ -80,7 +86,7 @@ export const mergeSort  = async(array:number[], set:SetFun) => {
   await _mergeSort(array, [...array], 0, array.length);
 } 
 
-export const heapSort = async(array:number[], set:SetFun) => {
+export const heapSort = async(array:number[], set? :SetFun) => {
   const heapify = async(arr: number[], n: number, i: number): Promise<void> => {
     let left: number = 2 * i + 1;
     let right: number = 2 * i + 2;
@@ -91,8 +97,10 @@ export const heapSort = async(array:number[], set:SetFun) => {
       largest = right;
     if (largest !== i) {
       const temp: number = arr[largest];
-      await set(i, arr[largest]);
-      await set(largest, temp);
+      if (set) {
+        await set(i, arr[largest]);
+        await set(largest, temp);
+      }
       [arr[i], arr[largest]] = [arr[largest], arr[i]];
       await heapify(arr, n, largest);
     }
@@ -104,8 +112,10 @@ export const heapSort = async(array:number[], set:SetFun) => {
     }
     for (let i = length - 1; i > 0; --i) {
       const temp: number = arr[0]; 
-      await set(i, arr[0]);
-      await set(0, temp);
+      if (set) {
+        await set(i, arr[0]);
+        await set(0, temp);
+      }
       [arr[i], arr[0]] = [arr[0], arr[i]];
       await heapify(arr, i, 0);
     }
