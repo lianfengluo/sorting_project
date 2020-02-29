@@ -82,11 +82,13 @@ h3 {
   height: 100%;
 }
 
-.header-content h3 {
+.header-content div {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 20px 0 0;
+  font-size: 20px;
+  font-weight: 800;
   height: 100%;
 }
 
@@ -174,7 +176,7 @@ h3 {
 .sorting-speed input[type="range"]::-moz-range-thumb {
   border: 1px solid rgb(119, 184, 228);
   height: 25px;
-  width: 25px;
+  min-width: 25px;
   border-radius: 25px;
   background: #a1d0ff;
   cursor: pointer;
@@ -274,7 +276,7 @@ h3 {
   font-weight: 800;
 }
 
-.setting-container button {
+.setting-button {
   font-weight: 800;
   font-size: 1.6rem;
   border: 0;
@@ -282,20 +284,13 @@ h3 {
   height: 100%;
   border-radius: 5px;
   color: white;
-  background: linear-gradient(
-    to right,
-    rgba(22, 160, 224, 0.75), 80%,
-    rgba(16, 179, 255, 0.5)
-  );
+  background: rgba(16, 179, 255, 0.9);
 }
-.setting-container button:hover {
+.setting-button:hover {
   cursor: pointer;
-  background: linear-gradient(
-    to right,
-    rgba(16, 179, 255, 0.5), 80%,
-    rgba(22, 160, 224, 0.25)
-  );
+  background: rgba(16, 179, 255, 0.8);
 }
+
 .sorting-button {
   display: flex;
   flex-direction: row-reverse;
@@ -303,7 +298,7 @@ h3 {
   justify-content: space-around;
 }
 
-.sorting-button button {
+.sorting-button > button {
   font-weight: 800;
   font-size: 1.6rem;
   border: 0;
@@ -311,23 +306,19 @@ h3 {
   height: 45px;
   border-radius: 5px;
   color: white;
-  background: linear-gradient(
-    to right,
-    rgba(22, 160, 224, 0.75), 80%,
-    rgba(16, 179, 255, 0.5)
-  );
+  background: rgba(16, 179, 255, 0.8);
 }
 .sorting-button button:hover {
   cursor: pointer;
   background: linear-gradient(
     to right,
-    rgba(16, 179, 255, 0.5), 80%,
-    rgba(22, 160, 224, 0.25)
+    rgba(16, 179, 255, 0.8), 80%,
+    rgba(22, 160, 224, 0.6)
   );
 }
 
 .bar-chart {
-  height: 70vh;
+  height: 80vh;
   min-height: 500px;
   margin-bottom: 10px;
   width: 100%;
@@ -338,11 +329,11 @@ h3 {
   align-items: flex-end;
 }
 
-.bar-chart div {
+.bar-chart > div {
   display: inline-block;
   bottom: 0;
   margin: 0;
-  background: linear-gradient(to bottom, rgba(90, 90, 90, 0.9), 80%,rgba(90, 90, 90, 0.3));
+  background: linear-gradient(to bottom, rgba(90, 90, 90, 0.9), 80%,rgba(90, 90, 90, 0.8));
   box-sizing: border-box;
   line-height: 100%;
 }

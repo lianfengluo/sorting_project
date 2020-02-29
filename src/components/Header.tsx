@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface Props {
-  text?: string[];
   title: string;
+  text?: string[];
 }
 
 const Header: React.FC<Props> = ({title, text}) => {
@@ -12,7 +12,7 @@ const Header: React.FC<Props> = ({title, text}) => {
        <h2 className="header-title">
          {title}
        </h2>
-      {text && text.map((v, k) => <h3 key={k}>{v}</h3>) }
+      {text && text.map((v, k) => <div key={k}>{v}</div>) }
      </header>
    </div>
  )

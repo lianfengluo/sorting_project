@@ -23,18 +23,18 @@ interface SettingInfo {
   setMax: (max: number) => void;
   setOption: (option: string) => void;
   regenerate: (arraySize: number, max: number) => void;
-  default_speed: number;
-  default_size: number;
-  default_max: number;
+  defaultSpeed: number;
+  defaultSize: number;
+  defaultMax: number;
 }
 
 const Settings: React.FC<SettingInfo> = ({ 
   setArraySize, setSpeed, setMax, setOption, regenerate,
-  default_speed, default_size, default_max
+  defaultSpeed, defaultSize, defaultMax
  }) => {
-  const [speed, setInnerSpeed] = useState<number>(default_speed);
-  const [arraySize, setInnerArraySize] = useState<number>(default_size);
-  const [max, setInnerMax] = useState<number>(default_max);
+  const [speed, setInnerSpeed] = useState<number>(defaultSpeed);
+  const [arraySize, setInnerArraySize] = useState<number>(defaultSize);
+  const [max, setInnerMax] = useState<number>(defaultMax);
   const [selectedOption, setSelectedOption] = useState<ValueType<Option>>(algoOptions[0]);
   const submitArraySize = useCallback((value:number): void => {
     const val = (+value < 10 ? 10 : (+value > 100) ? 100 : +value);
@@ -59,7 +59,7 @@ const Settings: React.FC<SettingInfo> = ({
       <div className="input-size">
         <input type="text" name="arraySize" value={arraySize} 
           onChange={e =>
-            setInnerArraySize(!isNaN(+e.target.value) ? +e.target.value : default_size)}
+            setInnerArraySize(!isNaN(+e.target.value) ? +e.target.value : defaultSize)}
           onKeyDown={(e) => e.key === 'Enter' && submitArraySize(+e.currentTarget.value)} required />
         <label htmlFor="arraySize">
           Size (10 or above):
@@ -67,7 +67,7 @@ const Settings: React.FC<SettingInfo> = ({
       </div>
       <div className="max-number">
         <input type="text" value={max}
-          onChange={e => setInnerMax(!isNaN(+e.target.value) ? +e.target.value : default_max)}
+          onChange={e => setInnerMax(!isNaN(+e.target.value) ? +e.target.value : defaultMax)}
           onKeyDown={(e) => e.key === 'Enter' && submitMaxVal(+e.currentTarget.value)} 
           name="maxNumber" required />
         <label htmlFor="maxNumber">
@@ -88,7 +88,7 @@ const Settings: React.FC<SettingInfo> = ({
         />
       </div>
       <div>
-        <button onClick={() => {
+        <button  className="setting-button" onClick={() => {
           submitArraySize(arraySize);
           submitMaxVal(max);
           regenerate(arraySize, max)
