@@ -77,7 +77,7 @@ const BarChart: React.FC<Props> = ({ array, speed, algoOption }) => {
     }
   }
   return (
-    <Suspense fallback={()=><h3>Loading...</h3>}>
+    <Suspense fallback={<h3>Loading...</h3>}>
     <div className="chart-content">
       <div className="bar-chart">
         {array.map((v, k) =>

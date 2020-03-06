@@ -26,7 +26,7 @@ const Content: React.FC<{}> = () => {
     generate(arraySize, max);
   }, [arraySize, max, speed, algoOption])
   return (
-    <Suspense fallback={()=><h3>Loading...</h3>}>
+    <Suspense fallback={<h3>Loading...</h3>}>
       <div className="container">
         <Settings setArraySize={setArraySize} setSpeed={setSpeed} setMax={setMax} 
           regenerate={generate} setOption={setAlgoOption} 
